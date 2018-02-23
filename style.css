@@ -1,0 +1,79 @@
+/* Adam Casey */
+
+#title{
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#layers{
+	color: white;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+}
+
+.firstLayer{
+	line-height: 2.5;
+	width: 30%;
+	margin-left: 600px;
+	height: 40px;
+}
+
+.secondLayer{
+	line-height: 2.5;
+	width: 15%;
+	height: 40px;
+	margin-left: 570px;
+}
+
+.thirdLayer{
+	line-height: 2.5;
+	width: 25%;
+	height: 40px;
+	margin-left: 495px;
+}
+
+.fourthLayer{
+	line-height: 2.5;
+	width: 30%;
+	height: 40px;
+	margin-left: 460px;
+}
+
+.fifthLayer1{
+	float: left;
+	line-height: 2.5;
+	height: 40px;
+	width: 20%;
+	margin-left: 390px;
+}
+
+.fifthLayer2{
+	float: left;
+	line-height: 2.5;
+	height: 40px;
+	width: 20%;
+}
+
+.sixthLayer1{
+	line-height: 2.5;
+	height: 40px;
+	float: left;
+	width: 16%;
+	margin-left: 335px;
+}
+.sixthLayer2{
+	line-height: 2.5;
+	height: 40px;
+	float: left;
+	width: 16%;
+
+}
+.sixthLayer3{
+	line-height: 2.5;
+	height: 40px;
+	float: left;
+	width: 16%;
+}
