@@ -1,5 +1,3 @@
-
-
 -- #1
 
 select LastName, FirstName, HireDate, Country from nwEmployees
@@ -18,36 +16,12 @@ INNER JOIN (SELECT MAX(UnitPrice) AS MaxPrice
 FROM nwProducts  GROUP BY UnitPrice) q ON UnitPrice = UnitPrice
 AND UnitPrice = q.MaxPrice order by UnitPrice desc limit 1;
 
--- #4 
-select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value" 
-  from nwProducts 
-    where UnitsInStock * UnitPrice > 2000 
-  order by UnitsInStock * UnitPrice desc;
+-- #4
 
-/*
-mysql> select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value" 
-  from nwProducts 
-    where UnitsInStock * UnitPrice > 2000 
+select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value"
+  from nwProducts
+    where UnitsInStock * UnitPrice > 2000
   order by UnitsInStock * UnitPrice desc;
-+-----------+------------------------------+-----------------+
-| ProductID | ProductName                  | Inventory Value |
-+-----------+------------------------------+-----------------+
-|        38 | Côte de Blaye                |         4479.50 |
-|        59 | Raclette Courdavault         |         4345.00 |
-|        12 | Queso Manchego La Pastora    |         3268.00 |
-|        20 | Sir Rodney's Marmalade       |         3240.00 |
-|        61 | Sirop d'érable               |         3220.50 |
-|         6 | Grandma's Boysenberry Spread |         3000.00 |
-|         9 | Mishi Kobe Niku              |         2813.00 |
-|        55 | Pâté chinois                 |         2760.00 |
-|        18 | Carnarvon Tigers             |         2625.00 |
-|        40 | Boston Crab Meat             |         2263.20 |
-|        22 | Gustaf's Knäckebröd          |         2184.00 |
-|        27 | Schoggi Schokolade           |         2151.10 |
-|        36 | Inlagd Sill                  |         2128.00 |
-+-----------+------------------------------+-----------------+
-13 rows in set (0.00 sec)
-*/
 
 -- #5
 
@@ -63,7 +37,14 @@ group by nwCustomers.CustomerID
 having Orders > 20
 order by Orders desc;
 
--- #7 : haven't programmed this one, it's throwing me off!
+-- #7 : It works!
+
+select nwProducts.SupplierID, ANY_VALUE(UnitsInStock * UnitPrice), COUNT(*)
+as Products from nwProducts, nwSuppliers
+where nwProducts.SupplierID = nwSuppliers.SupplierID
+group by nwProducts.SupplierID
+having Products > 3
+order by Products desc;
 
 -- #8
 
@@ -80,6 +61,8 @@ group by nwEmployees.EmployeeID
 having Orders > 100
 order by LastName, FirstName asc;
 
+-- #10
+
 -- This code functions but only finds what orders DO exist, not which don't.
 -- select nwOrders.CustomerID, CompanyName, COUNT(nwOrders.CustomerID)
 -- as Orders from nwCustomers, nwOrders
@@ -94,3 +77,42 @@ order by LastName, FirstName asc;
 --   FROM nwOrders
 --   WHERE nwOrders.CustomerID = nwCustomers.CustomerID
 -- );
+
+-- #11
+
+select CompanyName, ContactName, CategoryName, Description,
+ProductName, UnitsOnOrder from nwSuppliers, nwProducts, nwCategories
+where UnitsInStock = 0
+order by ProductName;
+
+-- #12
+
+-- #13
+
+create table Top_Items (
+    ItemID int NOT NULL,
+    ItemName varchar(4) default NULL,
+    InventoryDate datetime NULL,
+    SupplierID int default NULL,
+    ItemQuantity int default NULL,
+    ItemPrice decimal(9,2) default '0.00',
+    PRIMARY KEY(ItemID)
+    )
+    CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+-- #14
+
+-- #15
+
+delete from Top_Items where Country='Canada';
+
+-- #16
+
+-- #17
+
+update Top_Items
+  set InventoryValue = ItemPrice * ItemQuantity;
+
+-- #18
+
+drop table Top_Items;
