@@ -16,9 +16,11 @@ INNER JOIN (SELECT MAX(UnitPrice) AS MaxPrice
 FROM nwProducts  GROUP BY UnitPrice) q ON UnitPrice = UnitPrice
 AND UnitPrice = q.MaxPrice order by UnitPrice desc limit 1;
 
--- #4 - this isn't finished, I can't figure out how to calculate from here
-
-select UnitPrice * UnitsInStock as TotalInventoryValue from nwProducts;
+-- #4 
+select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value" 
+  from nwProducts 
+    where UnitsInStock * UnitPrice > 2000 
+  order by UnitsInStock * UnitPrice desc;
 
 -- #5
 
