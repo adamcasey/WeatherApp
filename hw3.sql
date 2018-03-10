@@ -1,3 +1,5 @@
+
+
 -- #1
 
 select LastName, FirstName, HireDate, Country from nwEmployees
@@ -21,6 +23,31 @@ select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value"
   from nwProducts 
     where UnitsInStock * UnitPrice > 2000 
   order by UnitsInStock * UnitPrice desc;
+
+/*
+mysql> select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value" 
+  from nwProducts 
+    where UnitsInStock * UnitPrice > 2000 
+  order by UnitsInStock * UnitPrice desc;
++-----------+------------------------------+-----------------+
+| ProductID | ProductName                  | Inventory Value |
++-----------+------------------------------+-----------------+
+|        38 | Côte de Blaye                |         4479.50 |
+|        59 | Raclette Courdavault         |         4345.00 |
+|        12 | Queso Manchego La Pastora    |         3268.00 |
+|        20 | Sir Rodney's Marmalade       |         3240.00 |
+|        61 | Sirop d'érable               |         3220.50 |
+|         6 | Grandma's Boysenberry Spread |         3000.00 |
+|         9 | Mishi Kobe Niku              |         2813.00 |
+|        55 | Pâté chinois                 |         2760.00 |
+|        18 | Carnarvon Tigers             |         2625.00 |
+|        40 | Boston Crab Meat             |         2263.20 |
+|        22 | Gustaf's Knäckebröd          |         2184.00 |
+|        27 | Schoggi Schokolade           |         2151.10 |
+|        36 | Inlagd Sill                  |         2128.00 |
++-----------+------------------------------+-----------------+
+13 rows in set (0.00 sec)
+*/
 
 -- #5
 
