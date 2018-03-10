@@ -39,7 +39,7 @@ order by Orders desc;
 
 -- #7 : It works!
 
-select nwProducts.SupplierID, ANY_VALUE(UnitsInStock * UnitPrice), COUNT(*)
+select nwProducts.SupplierID, ANY_VALUE(UnitsInStock * UnitPrice) as "Value of Inventory", COUNT(*)
 as Products from nwProducts, nwSuppliers
 where nwProducts.SupplierID = nwSuppliers.SupplierID
 group by nwProducts.SupplierID
