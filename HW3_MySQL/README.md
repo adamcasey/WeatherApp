@@ -1,5 +1,7 @@
-Query Problems 
+# Query Problems 
+
 For this homework you must create and execute queries against the Northwinds database to fulfill the requirements listed below. For each query requirement the number of rows to expect in your answer set is listed in parentheses.  
+
 1.  Create an alphabetical listing (Last Name, First Name) of all employees not living in the USA who have been employed with Northwinds for at least 5 years as of today. (3)  
 
 2.  Prepare a Reorder List for products currently in stock. (Products in stock have at least one unit in inventory.)  Show Product ID, Name, Quantity in Stock and Unit Price for products whose inventory level is at or below the reorder level. (17)  
