@@ -154,13 +154,11 @@ for those products whose inventory value is greater than $2,500. (No answer set 
 delete from Top_Items where Country='Canada';
 
 -- #16
-/*
-Add a new column to the Top_Items table called InventoryValue ((decimal (9,2))) after the
-inventory date. No answer set needed.
 
-ALTER TABLE Top_Items
-ADD COLUMN `InventoryValue` decimal(9,2) default '0.00' AFTER `InventoryDate`;
-*/
+alter table Top_Items 
+add column InventoryValue decimal(9,2) NOT NULL 
+AFTER InventoryDate;;
+
 -- #17
 
 update Top_Items
