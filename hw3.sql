@@ -137,6 +137,14 @@ select ProductID, CategoryID, ProductName, now(), UnitsInStock, UnitPrice, Suppl
 */
 
 /*
+MySQL apparently can convert just numbers to integers using cast() but I can't figure out the right syntax.
+
+insert into Top_Items (ItemID, ItemCode, ItemName, InventoryDate, ItemQuantity, ItemPrice, SupplierID)
+select ProductID, CategoryID, ProductName, date(now()), UnitsInStock, UnitPrice, SupplierID from nwProducts
+where trim(cast(nwProducts.QuantityPerUnit as signed)) * trim(cast(nwProducts.UnitPrice as signed))> 2500;
+*/
+
+/*
 Populate the new table “Top_Items” using these columns from the nwProducts table.
 ProductID  ItemID
 CategoryID  ItemCode
