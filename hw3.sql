@@ -117,7 +117,7 @@ mysql> select nwProducts.ProductName, nwProducts.UnitsInStock ,nwSuppliers.Compa
 create table Top_Items (
     ItemID int NOT NULL,
     ItemCode int NOT NULL,
-    ItemName varchar(4) default NULL,
+    ItemName varchar(40) default NULL,
     InventoryDate datetime NULL,
     SupplierID int default NULL,
     ItemQuantity int default NULL,
@@ -127,6 +127,15 @@ create table Top_Items (
     CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- #14
+
+/*
+This is functional code but doesn't take into account the last portion 
+for only inventory value > $2,500. CAN'T FIGURE THAT OUT!
+
+insert into Top_Items (ItemID, ItemCode, ItemName, InventoryDate, ItemQuantity, ItemPrice, SupplierID)
+select ProductID, CategoryID, ProductName, now(), UnitsInStock, UnitPrice, SupplierID from nwProducts;
+*/
+
 /*
 Populate the new table “Top_Items” using these columns from the nwProducts table.
 ProductID  ItemID
@@ -148,6 +157,9 @@ delete from Top_Items where Country='Canada';
 /*
 Add a new column to the Top_Items table called InventoryValue ((decimal (9,2))) after the
 inventory date. No answer set needed.
+
+ALTER TABLE Top_Items
+ADD COLUMN `InventoryValue` decimal(9,2) default '0.00' AFTER `InventoryDate`;
 */
 -- #17
 
