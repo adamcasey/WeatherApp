@@ -62,21 +62,20 @@ having Orders > 100
 order by LastName, FirstName asc;
 
 -- #10
+select nwCustomers.CustomerID, nwCustomers.CompanyName from nwCustomers
+where CustomerID not in (select CustomerID from nwOrders);
 
--- This code functions but only finds what orders DO exist, not which don't.
--- select nwOrders.CustomerID, CompanyName, COUNT(nwOrders.CustomerID)
--- as Orders from nwCustomers, nwOrders
--- where nwOrders.CustomerID = nwCustomers.CustomerID
--- group by nwCustomers.CustomerID
--- having Orders = 0;
-
--- This code DOESN'T function
--- select nwOrders.CustomerID, CompanyName from nwCustomers, nwOrders
--- AND NOT EXISTS (
---   SELECT nwCustomers.CustomerID
---   FROM nwOrders
---   WHERE nwOrders.CustomerID = nwCustomers.CustomerID
--- );
+/*
+mysql> select nwCustomers.CustomerID, nwCustomers.CompanyName from nwCustomers
+    -> where CustomerID not in (select CustomerID from nwOrders);
++------------+--------------------------------------+
+| CustomerID | CompanyName                          |
++------------+--------------------------------------+
+| FISSA      | FISSA Fabrica Inter. Salchichas S.A. |
+| PARIS      | Paris specialites                    |
++------------+--------------------------------------+
+2 rows in set (0.01 sec)
+*/
 
 -- #11
 
@@ -87,10 +86,37 @@ order by ProductName;
 
 -- #12
 
+select nwProducts.ProductName, nwProducts.UnitsInStock ,nwSuppliers.CompanyName, nwSuppliers.Country
+from nwSuppliers left join nwProducts on nwProducts.SupplierID = nwSuppliers.SupplierID
+where nwProducts.QuantityPerUnit like '%bottles%';
+
+/*
+mysql> select nwProducts.ProductName, nwProducts.UnitsInStock ,nwSuppliers.CompanyName, nwSuppliers.Country
+    -> from nwSuppliers left join nwProducts on nwProducts.SupplierID = nwSuppliers.SupplierID
+    -> where nwProducts.QuantityPerUnit like '%bottles%';
++----------------------------------+--------------+-------------------------------------+-----------+
+| ProductName                      | UnitsInStock | CompanyName                         | Country   |
++----------------------------------+--------------+-------------------------------------+-----------+
+| Chang                            |           17 | Exotic Liquids                      | UK        |
+| Aniseed Syrup                    |           13 | Exotic Liquids                      | UK        |
+| Genen Shouyu                     |           39 | Mayumi's                            | Japan     |
+| Sasquatch Ale                    |          111 | Bigfoot Breweries                   | USA       |
+| Steeleye Stout                   |           20 | Bigfoot Breweries                   | USA       |
+| Côte de Blaye                    |           17 | Aux joyeux ecclésiastiques          | France    |
+| Sirop d'érable                   |          113 | Forêts dérables                     | Canada    |
+| Louisiana Fiery Hot Pepper Sauce |           76 | New Orleans Cajun Delights          | USA       |
+| Laughing Lumberjack Lager        |           52 | Bigfoot Breweries                   | USA       |
+| Outback Lager                    |           15 | Pavlova Ltd.                        | Australia |
+| Rhönbräu Klosterbier             |          125 | Plutzer Lebensmittelgroßmärkte AG   | Germany   |
++----------------------------------+--------------+-------------------------------------+-----------+
+11 rows in set (0.17 sec)
+
+*/
 -- #13
 
 create table Top_Items (
     ItemID int NOT NULL,
+    ItemCode int NOT NULL,
     ItemName varchar(4) default NULL,
     InventoryDate datetime NULL,
     SupplierID int default NULL,
@@ -101,13 +127,28 @@ create table Top_Items (
     CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- #14
+/*
+Populate the new table “Top_Items” using these columns from the nwProducts table.
+ProductID  ItemID
+CategoryID  ItemCode
+ProductName  ItemName
+Today’s date  Inventory Date
+UnitsInStock  ItemQuantity
+UnitPrice  ItemPrice
+SupplierID  SupplierID
+for those products whose inventory value is greater than $2,500. (No answer set needed.)
+(HINT: the inventory value of an Item is ItemPrice times ItemQuantity. )
+*/
 
 -- #15
 
 delete from Top_Items where Country='Canada';
 
 -- #16
-
+/*
+Add a new column to the Top_Items table called InventoryValue ((decimal (9,2))) after the
+inventory date. No answer set needed.
+*/
 -- #17
 
 update Top_Items
