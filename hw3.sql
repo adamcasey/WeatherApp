@@ -128,34 +128,9 @@ create table Top_Items (
 
 -- #14
 
-/*
-This is functional code but doesn't take into account the last portion 
-for only inventory value > $2,500. CAN'T FIGURE THAT OUT!
-
-insert into Top_Items (ItemID, ItemCode, ItemName, InventoryDate, ItemQuantity, ItemPrice, SupplierID)
-select ProductID, CategoryID, ProductName, now(), UnitsInStock, UnitPrice, SupplierID from nwProducts;
-*/
-
-/*
-MySQL apparently can convert just numbers to integers using cast() but I can't figure out the right syntax.
-
 insert into Top_Items (ItemID, ItemCode, ItemName, InventoryDate, ItemQuantity, ItemPrice, SupplierID)
 select ProductID, CategoryID, ProductName, date(now()), UnitsInStock, UnitPrice, SupplierID from nwProducts
-where trim(cast(nwProducts.QuantityPerUnit as signed)) * trim(cast(nwProducts.UnitPrice as signed))> 2500;
-*/
-
-/*
-Populate the new table “Top_Items” using these columns from the nwProducts table.
-ProductID  ItemID
-CategoryID  ItemCode
-ProductName  ItemName
-Today’s date  Inventory Date
-UnitsInStock  ItemQuantity
-UnitPrice  ItemPrice
-SupplierID  SupplierID
-for those products whose inventory value is greater than $2,500. (No answer set needed.)
-(HINT: the inventory value of an Item is ItemPrice times ItemQuantity. )
-*/
+where nwProducts.UnitsInStock * nwProducts.UnitPrice > 2500;
 
 -- #15
 
