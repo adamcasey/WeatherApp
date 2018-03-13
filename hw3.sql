@@ -49,8 +49,33 @@ order by Products desc;
 -- #8
 
 select CompanyName, ProductName, UnitPrice
-from nwSuppliers, nwProducts where Country = 'USA'
+from nwSuppliers left join nwProducts on nwProducts.SupplierID = nwSuppliers.SupplierID
+where nwSuppliers.Country like '%USA%'
 order by UnitPrice desc;
+
+/*
+mysql> select CompanyName, ProductName, UnitPrice
+    -> from nwSuppliers left join nwProducts on nwProducts.SupplierID = nwSuppliers.SupplierID
+    -> where nwSuppliers.Country like '%USA%'
+    -> order by UnitPrice desc;
++-----------------------------+----------------------------------+-----------+
+| CompanyName                 | ProductName                      | UnitPrice |
++-----------------------------+----------------------------------+-----------+
+| Grandma Kelly's Homestead   | Northwoods Cranberry Sauce       |     40.00 |
+| Grandma Kelly's Homestead   | Uncle Bob's Organic Dried Pears  |     30.00 |
+| Grandma Kelly's Homestead   | Grandma's Boysenberry Spread     |     25.00 |
+| New Orleans Cajun Delights  | Chef Anton's Cajun Seasoning     |     22.00 |
+| New Orleans Cajun Delights  | Chef Anton's Gumbo Mix           |     21.35 |
+| New Orleans Cajun Delights  | Louisiana Fiery Hot Pepper Sauce |     21.05 |
+| New England Seafood Cannery | Boston Crab Meat                 |     18.40 |
+| Bigfoot Breweries           | Steeleye Stout                   |     18.00 |
+| New Orleans Cajun Delights  | Louisiana Hot Spiced Okra        |     17.00 |
+| Bigfoot Breweries           | Sasquatch Ale                    |     14.00 |
+| Bigfoot Breweries           | Laughing Lumberjack Lager        |     14.00 |
+| New England Seafood Cannery | Jack's New England Clam Chowder  |      9.65 |
++-----------------------------+----------------------------------+-----------+
+12 rows in set (0.00 sec)
+*/
 
 -- #9
 
