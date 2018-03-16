@@ -3,6 +3,17 @@
 select LastName, FirstName, HireDate, Country from nwEmployees
 where HireDate <= '2013-07-04'
 AND Country <> 'USA' order by LastName asc;
+/*
+mysql> select LastName, FirstName, HireDate, Country from nwEmployees where HireDate <= '2013-07-04' AND Country <> 'USA' order by LastName asc;
++-----------+-----------+---------------------+---------+
+| LastName  | FirstName | HireDate            | Country |
++-----------+-----------+---------------------+---------+
+| Dodsworth | Anne      | 2004-11-15 00:00:00 | UK      |
+| King      | Robert    | 2012-09-02 00:00:00 | UK      |
+| Suyama    | Michael   | 2011-10-17 00:00:00 | UK      |
++-----------+-----------+---------------------+---------+
+3 rows in set (0.01 sec)
+*/
 
 -- #2
 
@@ -15,6 +26,18 @@ SELECT ProductName, UnitPrice     FROM nwProducts
 INNER JOIN (SELECT MAX(UnitPrice) AS MaxPrice
 FROM nwProducts  GROUP BY UnitPrice) q ON UnitPrice = UnitPrice
 AND UnitPrice = q.MaxPrice order by UnitPrice desc limit 1;
+/*
+mysql> SELECT ProductName, UnitPrice     FROM nwProducts
+    -> INNER JOIN (SELECT MAX(UnitPrice) AS MaxPrice
+    -> FROM nwProducts  GROUP BY UnitPrice) q ON UnitPrice = UnitPrice
+    -> AND UnitPrice = q.MaxPrice order by UnitPrice desc limit 1;
++----------------+-----------+
+| ProductName    | UnitPrice |
++----------------+-----------+
+| Côte de Blaye  |    263.50 |
++----------------+-----------+
+1 row in set (0.00 sec)
+*/
 
 -- #4
 
@@ -22,6 +45,31 @@ select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value"
   from nwProducts
     where UnitsInStock * UnitPrice > 2000
   order by UnitsInStock * UnitPrice desc;
+  
+/*
+mysql> select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Value"
+    ->   from nwProducts
+    ->     where UnitsInStock * UnitPrice > 2000
+    ->   order by UnitsInStock * UnitPrice desc;
++-----------+------------------------------+-----------------+
+| ProductID | ProductName                  | Inventory Value |
++-----------+------------------------------+-----------------+
+|        38 | Côte de Blaye                |         4479.50 |
+|        59 | Raclette Courdavault         |         4345.00 |
+|        12 | Queso Manchego La Pastora    |         3268.00 |
+|        20 | Sir Rodney's Marmalade       |         3240.00 |
+|        61 | Sirop d'érable               |         3220.50 |
+|         6 | Grandma's Boysenberry Spread |         3000.00 |
+|         9 | Mishi Kobe Niku              |         2813.00 |
+|        55 | Pâté chinois                 |         2760.00 |
+|        18 | Carnarvon Tigers             |         2625.00 |
+|        40 | Boston Crab Meat             |         2263.20 |
+|        22 | Gustaf's Knäckebröd          |         2184.00 |
+|        27 | Schoggi Schokolade           |         2151.10 |
+|        36 | Inlagd Sill                  |         2128.00 |
++-----------+------------------------------+-----------------+
+13 rows in set (0.00 sec)
+*/
 
 -- #5
 
@@ -36,6 +84,22 @@ where nwOrders.CustomerID = nwCustomers.CustomerID
 group by nwCustomers.CustomerID
 having Orders > 20
 order by Orders desc;
+/*
+mysql> select nwOrders.CustomerID, CompanyName, COUNT(nwOrders.CustomerID)
+    -> as Orders from nwCustomers, nwOrders
+    -> where nwOrders.CustomerID = nwCustomers.CustomerID
+    -> group by nwCustomers.CustomerID
+    -> having Orders > 20
+    -> order by Orders desc;
++------------+--------------------+--------+
+| CustomerID | CompanyName        | Orders |
++------------+--------------------+--------+
+| SAVEA      | Save-a-lot Markets |     31 |
+| ERNSH      | Ernst Handel       |     30 |
+| QUICK      | QUICK-Stop         |     28 |
++------------+--------------------+--------+
+3 rows in set (0.10 sec)
+*/
 
 -- #7 : It works!
 
@@ -45,6 +109,24 @@ where nwProducts.SupplierID = nwSuppliers.SupplierID
 group by nwProducts.SupplierID
 having Products > 3
 order by Products desc;
+
+/*
+mysql> select LastName, FirstName, Title, Extension, COUNT(nwOrders.EmployeeID)
+    -> as Orders from nwEmployees, nwOrders
+    -> where nwOrders.EmployeeID = nwEmployees.EmployeeID
+    -> group by nwEmployees.EmployeeID
+    -> having Orders > 100
+    -> order by LastName, FirstName asc;
++-----------+-----------+--------------------------+-----------+--------+
+| LastName  | FirstName | Title                    | Extension | Orders |
++-----------+-----------+--------------------------+-----------+--------+
+| Callahan  | Laura     | Inside Sales Coordinator | 2344      |    104 |
+| Davolio   | Nancy     | Sales Representative     | 5467      |    123 |
+| Leverling | Janet     | Sales Representative     | 3355      |    127 |
+| Peacock   | Margaret  | Sales Representative     | 5176      |    156 |
++-----------+-----------+--------------------------+-----------+--------+
+4 rows in set (0.01 sec)
+*/
 
 -- #8
 
@@ -85,6 +167,24 @@ where nwOrders.EmployeeID = nwEmployees.EmployeeID
 group by nwEmployees.EmployeeID
 having Orders > 100
 order by LastName, FirstName asc;
+
+/*
+mysql> select LastName, FirstName, Title, Extension, COUNT(nwOrders.EmployeeID)
+    -> as Orders from nwEmployees, nwOrders
+    -> where nwOrders.EmployeeID = nwEmployees.EmployeeID
+    -> group by nwEmployees.EmployeeID
+    -> having Orders > 100
+    -> order by LastName, FirstName asc;
++-----------+-----------+--------------------------+-----------+--------+
+| LastName  | FirstName | Title                    | Extension | Orders |
++-----------+-----------+--------------------------+-----------+--------+
+| Callahan  | Laura     | Inside Sales Coordinator | 2344      |    104 |
+| Davolio   | Nancy     | Sales Representative     | 5467      |    123 |
+| Leverling | Janet     | Sales Representative     | 3355      |    127 |
+| Peacock   | Margaret  | Sales Representative     | 5176      |    156 |
++-----------+-----------+--------------------------+-----------+--------+
+4 rows in set (0.01 sec)
+*/
 
 -- #10
 select nwCustomers.CustomerID, nwCustomers.CompanyName from nwCustomers
@@ -166,7 +266,7 @@ where nwSuppliers.Country = 'Canada';
 
 alter table Top_Items 
 add column InventoryValue decimal(9,2) NOT NULL 
-AFTER InventoryDate;;
+AFTER InventoryDate;
 
 -- #17
 
