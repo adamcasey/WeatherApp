@@ -159,7 +159,8 @@ where nwProducts.UnitsInStock * nwProducts.UnitPrice > 2500;
 
 -- #15
 
-delete from Top_Items where Country='Canada';
+delete Top_Items from Top_Items left join nwSuppliers on nwSuppliers.SupplierID = Top_Items.SupplierID 
+where nwSuppliers.Country = 'Canada';
 
 -- #16
 
