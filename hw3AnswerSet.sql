@@ -1,3 +1,5 @@
+-- CSCI 3308 - HW3 - Adam Casey and Chelsea Buchler
+
 -- #1
 
 select LastName, FirstName, HireDate, Country from nwEmployees
@@ -17,8 +19,35 @@ mysql> select LastName, FirstName, HireDate, Country from nwEmployees where Hire
 
 -- #2
 
-select ProductName, UnitPrice, UnitsInStock from nwProducts
-where UnitsInStock < ReorderLevel;
+select ProductID, ProductName, UnitsInStock, UnitPrice from nwProducts
+where UnitsInStock > 0 and UnitsInStock < ReorderLevel;
+
+/*
+mysql> select ProductID, ProductName, UnitsInStock, UnitPrice from nwProducts
+    -> where UnitsInStock > 0 and UnitsInStock < ReorderLevel;
++-----------+----------------------------+--------------+-----------+
+| ProductID | ProductName                | UnitsInStock | UnitPrice |
++-----------+----------------------------+--------------+-----------+
+|         2 | Chang                      |           17 |     19.00 |
+|         3 | Aniseed Syrup              |           13 |     10.00 |
+|        11 | Queso Cabrales             |           22 |     21.00 |
+|        21 | Sir Rodney's Scones        |            3 |     10.00 |
+|        30 | Nord-Ost Matjeshering      |           10 |     25.89 |
+|        32 | Mascarpone Fabioli         |            9 |     32.00 |
+|        37 | Gravad lax                 |           11 |     26.00 |
+|        43 | Ipoh Coffee                |           17 |     46.00 |
+|        45 | Rogede sild                |            5 |      9.50 |
+|        48 | Chocolade                  |           15 |     12.75 |
+|        49 | Maxilaku                   |           10 |     20.00 |
+|        56 | Gnocchi di nonna Alice     |           21 |     38.00 |
+|        64 | Wimmers gute Semmelknödel  |           22 |     33.25 |
+|        66 | Louisiana Hot Spiced Okra  |            4 |     17.00 |
+|        68 | Scottish Longbreads        |            6 |     12.50 |
+|        70 | Outback Lager              |           15 |     15.00 |
+|        74 | Longlife Tofu              |            4 |     10.00 |
++-----------+----------------------------+--------------+-----------+
+17 rows in set (0.00 sec)
+*/
 
 -- #3
 
@@ -72,9 +101,34 @@ mysql> select ProductID, ProductName, UnitsInStock * UnitPrice as "Inventory Val
 */
 
 -- #5
+-- This gives 10 rows but the handout says 9, the CA confirmed this is the right code though
 
-select ShipCountry,COUNT(*) as Orders from nwOrders
-where ShipCountry <> 'USA' group by ShipCountry order by ShipCountry asc;
+select ShipCountry, COUNT(*) as Orders from nwOrders
+where ShipCountry <> 'USA' and OrderDate BETWEEN '2013-09-01' and '2013-09-30' 
+group by ShipCountry 
+order by ShipCountry asc;
+
+/*
+mysql> select ShipCountry, COUNT(*) as Orders from nwOrders
+    -> where ShipCountry <> 'USA' and OrderDate BETWEEN '2013-09-01' and '2013-09-30' 
+    -> group by ShipCountry 
+    -> order by ShipCountry asc;
++-------------+--------+
+| ShipCountry | Orders |
++-------------+--------+
+| Belgium     |      1 |
+| Brazil      |      1 |
+| France      |      3 |
+| Germany     |      3 |
+| Ireland     |      2 |
+| Italy       |      1 |
+| Mexico      |      2 |
+| Spain       |      2 |
+| UK          |      1 |
+| Venezuela   |      1 |
++-------------+--------+
+10 rows in set (0.00 sec)
+*/
 
 -- #6
 
@@ -187,6 +241,7 @@ mysql> select LastName, FirstName, Title, Extension, COUNT(nwOrders.EmployeeID)
 */
 
 -- #10
+
 select nwCustomers.CustomerID, nwCustomers.CompanyName from nwCustomers
 where CustomerID not in (select CustomerID from nwOrders);
 
@@ -204,10 +259,27 @@ mysql> select nwCustomers.CustomerID, nwCustomers.CompanyName from nwCustomers
 
 -- #11
 
-select CompanyName, ContactName, CategoryName, Description,
+select nwSuppliers.CompanyName, ContactName, CategoryName, Description,
 ProductName, UnitsOnOrder from nwSuppliers, nwProducts, nwCategories
-where UnitsInStock = 0
+where UnitsInStock = 0 and nwSuppliers.SupplierID = nwProducts.SupplierID and nwProducts.CategoryID = nwCategories.CategoryID
 order by ProductName;
+
+/*
+mysql> select nwSuppliers.CompanyName, ContactName, CategoryName, Description as 'Category Description',
+    -> ProductName, UnitsOnOrder from nwSuppliers, nwProducts, nwCategories
+    -> where UnitsInStock = 0 and nwSuppliers.SupplierID = nwProducts.SupplierID and nwProducts.CategoryID = nwCategories.CategoryID
+    -> order by ProductName;
++-------------------------------------+-----------------+----------------+------------------------------------------------------------+--------------------------+--------------+
+| CompanyName                         | ContactName     | CategoryName   | Category Description                                       | ProductName              | UnitsOnOrder |
++-------------------------------------+-----------------+----------------+------------------------------------------------------------+--------------------------+--------------+
+| Pavlova Ltd.                        | Ian Devling     | Meat/Poultry   | Prepared meats                                             | Alice Mutton             |            0 |
+| New Orleans Cajun Delights          | Shelley Burke   | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings | Chef Anton's Gumbo Mix   |            0 |
+| Formaggi Fortini s.r.l.             | Elio Rossi      | Dairy Products | Cheeses                                                    | Gorgonzola Telino        |           70 |
+| G'day Mate                          | Wendy Mackenzie | Meat/Poultry   | Prepared meats                                             | Perth Pasties            |            0 |
+| Plutzer Lebensmittelgroßmärkte AG   | Martin Bein     | Meat/Poultry   | Prepared meats                                             | Thüringer Rostbratwurst  |            0 |
++-------------------------------------+-----------------+----------------+------------------------------------------------------------+--------------------------+--------------+
+5 rows in set (0.01 sec)
+*/
 
 -- #12
 
