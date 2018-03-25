@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'aMAZEing Games' });
 });
 
+router.post('/register', function(req, res, next) {
+  res.render('index', { title: 'Registration Complete!' });
+});
 module.exports = router;
