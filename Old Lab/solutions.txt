@@ -1,5 +1,0 @@
-Q: What are the things needed for Bootstrap to be loaded?
-A: It needs the HTML5 Doctype at the beginning of the page and the 'lang' attribute set to the correct characters (en = english).
-
-Q: How does Bootstrap's Grid System work?
-A: It is used for creating page layouts with a series of rows and 12 columns that span the width of the webpage being designed. There are multiple Grid classes in Bootstrap design that are dedicated to specific device types that someone may be using to view the webpage(phones, tablets, desktop, etc...).
