@@ -32,5 +32,6 @@ npm-debug.log
 # Webpack source maps
 *.map
 
-# Local env file with credentials
+# Local env file with credentials. This stops git from tracking the log-in credentials 
+# So this .env file is not showing up in your git status as a modified file
 .env

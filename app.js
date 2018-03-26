@@ -10,6 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+//this is what allows us to sue the credentials within the .env file
 require('dotenv').config();
 
 // view engine setup
