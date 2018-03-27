@@ -3,6 +3,15 @@ var router = express.Router();
 
 var expressValidator = require('express-validator');
 
+/* Implementing password hashing with bcrypt */
+var bcrypt = require('bcrypt');
+/* 
+saltRounds is the number of hashings the password will go through
+salting is a randomly generated string of characters generated for each time a user is inserted
+into our db
+ */
+const saltRounds = 10;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'aMAZEing Games' });
@@ -36,24 +45,28 @@ router.post('/register', function(req, res, next) {
 	const Userpassword = req.body.password;
 	var UserID=Math.floor(Math.random()*11)
 
-
-
-	console.log(Username);
+	/*console.log(Username);
 	console.log(Useremail);
 	console.log(Userpassword);
-	console.log(UserID);
+	console.log(UserID);*/
 
 	//This is what actually connects us to the db
 	const db = require('../db.js')
-	//Access databse object and call a query on it
-	//This should actually insert a new user into the db
-	db.query('INSERT INTO users (UserID, Username, Useremail, Userpassword) VALUES (?, ?, ?, ?)', [UserID, Username, Useremail, Userpassword],
-		function(error, results, fields) {
-			if (error) throw error;
-			res.render('register', { title: 'Registration Complete!' });
+
+	/* saltRounds gets added onto the end of the password to make it harder to crack */
+	bcrypt.hash(Userpassword, saltRounds, function(err, hash) {
+		//Access databse object and call a query on it
+		//This should actually insert a new user into the db
+  		db.query('INSERT INTO users (UserID, Username, Useremail, Userpassword) VALUES (?, ?, ?, ?)', [UserID, Username, Useremail, hash],
+			function(error, results, fields) {
+				if (error) throw error;
+
+				res.render('register', { title: 'Registration Complete!' });
+			})
 		});
 	//res.render('register', { title: 'Registration Complete!' });
 	}
+
 });
 module.exports = router;
 
