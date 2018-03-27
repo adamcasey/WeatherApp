@@ -9,10 +9,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next) {
+
+	req.checkBody('username', 'Username field cannot be empty.').notEmpty();
+	const errors = req.validationErrors();
+
+	if (errors) {
+		console.log(`errors: ${JSON.stringify(errors)}`);
+
+		res.render('register', {title: 'Registration Error'});
+	}
+
 	const Username = req.body.username;
 	const Useremail = req.body.email;
 	const Userpassword = req.body.password;
 	var UserID=Math.floor(Math.random()*11)
+
+
 
 	console.log(Username);
 	console.log(Useremail);
