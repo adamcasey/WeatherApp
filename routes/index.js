@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var expressValidator = require('express-validator');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'aMAZEing Games' });
@@ -27,7 +29,7 @@ router.post('/register', function(req, res, next) {
 
 			//res.render('register', { title: 'Registration Complete!' });
 		});
-	res.render('index', { title: 'Registration Complete!' });
+	res.render('register', { title: 'Registration Complete!' });
 });
 module.exports = router;
 
