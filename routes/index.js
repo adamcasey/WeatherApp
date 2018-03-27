@@ -14,8 +14,18 @@ const saltRounds = 10;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'aMAZEing Games' });
+  res.render('home', { title: 'aMAZEing Games' });
 });
+
+router.get('/register', function(req, res, next) {
+  res.render('register', { title: 'aMAZEing Games' });
+});
+
+/* GET Game Page 1 */
+
+/* GET Game Page 2 */
+
+/* GET User Profile Page */
 
 router.post('/register', function(req, res, next) {
 
