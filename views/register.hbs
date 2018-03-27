@@ -5,6 +5,14 @@
 	<h1>{{title}}</h1>
 	<p>Welcome to {{title}} new user registration</p>
 
+	{{#if errors}}
+		{{#each errors}}
+			<div class="alert alert-danger">
+				<strong>{{this.msg}}</strong>
+			</div>
+		{{/each}}
+	{{/if}}
+
 	<form method="POST" action="/register">
 	  <div class="form-group">
 	  	<label for="username">Username</label>
