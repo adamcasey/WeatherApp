@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var expressValidator = require('express-validator');
+var passport = require('passport');
 
 /* Implementing password hashing with bcrypt */
 var bcrypt = require('bcrypt');
@@ -12,9 +13,12 @@ into our db
  */
 const saltRounds = 10;
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'aMAZEing Games' });
+	console.log(req.user);
+	console.log(req.isAuthenticated());
+  res.render('home', { title: 'aMAZEing Games Home Page' });
 });
 
 router.get('/register', function(req, res, next) {
@@ -53,7 +57,7 @@ router.post('/register', function(req, res, next) {
 	const Username = req.body.username;
 	const Useremail = req.body.email;
 	const Userpassword = req.body.password;
-	var UserID=Math.floor(Math.random()*11)
+	var UserID=Math.floor(Math.random()*357)
 
 	/*console.log(Username);
 	console.log(Useremail);
@@ -71,13 +75,43 @@ router.post('/register', function(req, res, next) {
 			function(error, results, fields) {
 				if (error) throw error;
 
-				res.render('register', { title: 'Registration Complete!' });
+				// Once a user is loggen in they can access private information using this db query
+				// function() is a callback function
+				db.query('SELECT LAST_INSERT_ID() as userTag', function(error, results, fields) {
+					//should now be getting id associated with user just inserted into db
+					//if you get an error --> throw error
+					if (error) throw error;
+
+					const userTag = results[0];
+					//if not error the take request object (req.) and use login()
+					//results should hold userid from the function(error, results, fields)
+					console.log(results[0]);
+					req.login(userTag, function(err) { 
+						//if login was successful take response object (res.) and redirect user to root/home page
+						res.redirect('/');
+
+					});
+					//res.render('register', { title: 'Registration Complete!' });
+				});
+
 			})
 		});
 	//res.render('register', { title: 'Registration Complete!' });
 	}
-
 });
+
+//serialization --> writing
+passport.serializeUser(function(userTag, done) {
+  done(null, userTag);
+});
+
+
+//deserialization --> unwriting
+passport.deserializeUser(function(userTag, done) {
+    done(null, userTag);
+});
+
+
 module.exports = router;
 
 

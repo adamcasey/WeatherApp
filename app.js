@@ -5,6 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
+
+// Authentication Packages --> the stuff between '' are packages that get pulled in and stored in a variable
+
+var session = require('express-session');
+var passport = require('passport');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -22,7 +28,23 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(expressValidator());
+app.use(expressValidator()); //this line must be immediately after any of the bodyParser middlewares!
+
+// stuff to return cookie to user
+app.use(session({
+  //should use a random string generator for this but maybe implement later
+  secret: 'alsdkfjalsdj',
+  //stays false --> only saving session when a change is directly made
+  resave: false,
+  //changed from tru to false --> create a cookie and session when users visits page even if they haven't logged in
+  saveUninitialized: false,
+  // cookie: { secure: true }
+}))
+
+// necessary middleware code needed for passport pacakges
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
