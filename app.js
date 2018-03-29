@@ -91,25 +91,26 @@ passport.use(new LocalStrategy(
       //if (undefined === results) {
         done(null, false);
           //this return call stops grom getting this error: Error: /home/user/Desktop/CSCI3308/SemesterProject/express-cc/views/error.hbs: Can't set headers after they are sent.
-          return;
-        }
-      //console.log("results[0]:", results[0].Userpassword.toString());
-      //storing hashed password from db in variable
-      const hash = results[0].Userpassword.toString();
-
-      //test hashed passwords in db from hashed password given by user when trying to login using bcrypt
-      //first arg is the plain text password, second arg is a hash, third arg is a callback function
-      bcrypt.compare(password, hash, function(err, response){
-        //if password given matches password in db
-        if (response === true) {
-          //successfully login the user as long as the second argument is filled and matches their unique UserID
-          return done(null, {userTag: results[0].UserID.toString()});
+          //return;
         } else {
-          //authentication request failed
-          return done(null, false);
-        }
-      });
-    })
+            //console.log("results[0]:", results[0].Userpassword.toString());
+            //storing hashed password from db in variable
+            const hash = results[0].Userpassword.toString();
+            //test hashed passwords in db from hashed password given by user when trying to login using bcrypt
+            //first arg is the plain text password, second arg is a hash, third arg is a callback function
+            bcrypt.compare(password, hash, function(err, response){
+              //if password given matches password in db
+              if (response === true) {
+                //successfully login the user as long as the second argument is filled and matches their unique UserID
+                return done(null, {userTag: results[0].UserID.toString()});
+              } else {
+                //authentication request failed
+                return done(null, false);
+              }
+            });
+          }
+
+        })
   }
 ));
 

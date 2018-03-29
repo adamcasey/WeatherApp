@@ -55,6 +55,18 @@ router.post('/login', passport.authenticate('local', {
 	failureRedirect: '/login'
 })); 
 
+/*
+GET Logout Page
+When the user gets a url called 'logout' --> logout user with passport logot()
+*/
+router.get('/logout', function(req, res) {
+  req.logout();
+  //destroy the user session after logout
+  req.session.destroy();
+  res.redirect('/');
+  //res.render('home', { title: 'Log Out of aMAZEing Games' });
+});
+
 /* GET Game Page 1 */
 
 /* GET Game Page 2 */
@@ -152,7 +164,7 @@ function authenticationMiddleware() {
 		//only if the user is authenticated 
 	    if (req.isAuthenticated()) return next();
 	    //if use is NOT authenticated then redirect them to login page
-	 
+
 	    res.redirect('/login');
 	    
 	}
