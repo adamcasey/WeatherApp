@@ -6,12 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 
-// Authentication Packages --> the stuff between '' are packages that get pulled in and stored in a variable
 
+// Authentication Packages --> the stuff between '' are packages that get pulled in and stored in a variable
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var bcrypt = require('bcrypt');
 
 //this keeps a users session going until they log out
 var MySQLStore = require('express-mysql-session')(session);
@@ -72,30 +72,44 @@ app.use('/users', users);
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    console.log(username);
-    console.log(password);
+    console.log("username: ", username);
+    console.log("password: ", password);
     //query db to check if user is registered --> requires the db.js file
     const db = require('./db')
 
     //actually making use of the db object to query the db and see if username and password match records
     //make sure user actually exists and then return their plain text password --> then hash the password and compare to hashed passwords
-    db.query('SELECT Userpassword FROM users WHERE Username = ?', [username], function(err, results, fields) {
+    db.query('SELECT UserID, Userpassword FROM users WHERE Username = ?', [username], function(err, results, fields) {
       //error handling
       if (err) {done(err)};
 
-      //console.log(results);
+      console.log("results: ", results);
 
       //if user was successfully grabbed from the db then you can grab the password associated with the usernam
       //call on bcrypt to hash the plaintext password the user tried to login with and compare to db 
       if (results.length === 0) {
       //if (undefined === results) {
-          done(null, false);
+        done(null, false);
           //this return call stops grom getting this error: Error: /home/user/Desktop/CSCI3308/SemesterProject/express-cc/views/error.hbs: Can't set headers after they are sent.
           return;
         }
+      //console.log("results[0]:", results[0].Userpassword.toString());
+      //storing hashed password from db in variable
+      const hash = results[0].Userpassword.toString();
 
-      return done(null, 'adfasdfa');
-      })
+      //test hashed passwords in db from hashed password given by user when trying to login using bcrypt
+      //first arg is the plain text password, second arg is a hash, third arg is a callback function
+      bcrypt.compare(password, hash, function(err, response){
+        //if password given matches password in db
+        if (response === true) {
+          //successfully login the user as long as the second argument is filled and matches their unique UserID
+          return done(null, {userTag: results[0].UserID.toString()});
+        } else {
+          //authentication request failed
+          return done(null, false);
+        }
+      });
+    })
   }
 ));
 
