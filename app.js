@@ -10,6 +10,9 @@ var expressValidator = require('express-validator');
 
 var session = require('express-session');
 var passport = require('passport');
+//this keeps a users session going until they log out
+var MySQLStore = require('express-mysql-session')(session);
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -30,12 +33,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator()); //this line must be immediately after any of the bodyParser middlewares!
 
+var options = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database : process.env.DB_NAME,
+  socketPath: '/var/run/mysqld/mysqld.sock'
+
+};
+
+var sessionStore = new MySQLStore(options);
+
 // stuff to return cookie to user
 app.use(session({
   //should use a random string generator for this but maybe implement later
   secret: 'alsdkfjalsdj',
   //stays false --> only saving session when a change is directly made
   resave: false,
+  //property to use the sessionStore
+  store: sessionStore,
   //changed from tru to false --> create a cookie and session when users visits page even if they haven't logged in
   saveUninitialized: false,
   // cookie: { secure: true }
@@ -89,7 +105,7 @@ filenames.forEach(function (filename) {
 });
 
 hbs.registerHelper('json', function(context) {
-    return JSON.stringify(context, null, 2);
+  return JSON.stringify(context, null, 2);
 });
 
 

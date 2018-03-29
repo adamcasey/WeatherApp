@@ -22,14 +22,33 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'aMAZEing Games' });
+  res.render('register', { title: 'aMAZEing Games Registration' });
 });
+
+/* 
+GET User Profile Page 
+When the user gets a url called 'profile' --> call the following funciton
+authenticationMiddleware() tests for use login authentication and restricts the profile page if not true
+*/
+router.get('/profile', authenticationMiddleware(), function (req, res) {
+	//render a profile page
+	res.render('profile', { title: 'aMAZEing Games Profile Page' });
+});
+
+/*
+Login Page
+When the user gets a url called 'login'
+*/
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'aMAZEing Games User Login' });
+});
+
 
 /* GET Game Page 1 */
 
 /* GET Game Page 2 */
 
-/* GET User Profile Page */
+
 
 router.post('/register', function(req, res, next) {
 
@@ -57,7 +76,8 @@ router.post('/register', function(req, res, next) {
 	const Username = req.body.username;
 	const Useremail = req.body.email;
 	const Userpassword = req.body.password;
-	var UserID=Math.floor(Math.random()*357)
+	//var UserID=Math.floor(Math.random()*35793751)
+	var UserID = Math.random().toString(36).substring(7);
 
 	/*console.log(Username);
 	console.log(Useremail);
@@ -111,6 +131,16 @@ passport.deserializeUser(function(userTag, done) {
     done(null, userTag);
 });
 
+//call quest response() to test whether or not the user is authenticated
+function authenticationMiddleware() {  
+	return (req, res, next) => {
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+		//only if the user is authenticated 
+	    if (req.isAuthenticated()) return next();
+	    //if use is NOT authenticated then redirect them to login page
+	    res.redirect('/login')
+	}
+}
 
 module.exports = router;
 
