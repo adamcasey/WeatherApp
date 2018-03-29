@@ -36,19 +36,33 @@ router.get('/profile', authenticationMiddleware(), function (req, res) {
 });
 
 /*
-Login Page
+GET Login Page
 When the user gets a url called 'login'
 */
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'aMAZEing Games User Login' });
 });
 
+/*
+POST request for existing user login
+Makes user authentication request using passport
+*/
+
+router.post('/login', passport.authenticate('local', {
+	//where should user be redirected if they are successfully logged in --> to their profile page 
+	successRedirect: '/profile', 
+	//if they fail --> redirect them to the login page
+	failureRedirect: '/login'
+})); 
 
 /* GET Game Page 1 */
 
 /* GET Game Page 2 */
 
 
+/*
+POST request for new user registration
+*/
 
 router.post('/register', function(req, res, next) {
 
@@ -138,7 +152,9 @@ function authenticationMiddleware() {
 		//only if the user is authenticated 
 	    if (req.isAuthenticated()) return next();
 	    //if use is NOT authenticated then redirect them to login page
-	    res.redirect('/login')
+	 
+	    res.redirect('/login');
+	    
 	}
 }
 

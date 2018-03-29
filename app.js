@@ -10,6 +10,9 @@ var expressValidator = require('express-validator');
 
 var session = require('express-session');
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
 //this keeps a users session going until they log out
 var MySQLStore = require('express-mysql-session')(session);
 
@@ -66,6 +69,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    console.log(username);
+    console.log(password);
+    //query db to check if user is registered --> requires the db.js file
+    const db = require('./db')
+
+    //actually making use of the db object to query the db and see if username and password match records
+    //make sure user actually exists and then return their plain text password --> then hash the password and compare to hashed passwords
+    db.query('SELECT Userpassword FROM users WHERE Username = ?', [username], function(err, results, fields) {
+      //error handling
+      if (err) {done(err)};
+
+      //console.log(results);
+
+      //if user was successfully grabbed from the db then you can grab the password associated with the usernam
+      //call on bcrypt to hash the plaintext password the user tried to login with and compare to db 
+      if (results.length === 0) {
+      //if (undefined === results) {
+          done(null, false);
+          //this return call stops grom getting this error: Error: /home/user/Desktop/CSCI3308/SemesterProject/express-cc/views/error.hbs: Can't set headers after they are sent.
+          return;
+        }
+
+      return done(null, 'adfasdfa');
+      })
+  }
+));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
