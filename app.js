@@ -64,6 +64,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// dynamically changing header bar options based on if the user is logged in or not
+app.use(function(req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  //next use
+  next();
+
+});
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
