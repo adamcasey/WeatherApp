@@ -1,0 +1,452 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tempR",
+				"tempRed_Pos"
+			],
+			[
+				"con",
+				"convolve4"
+			],
+			[
+				"add",
+				"add_flip_function"
+			],
+			[
+				"src",
+				"srcPos"
+			],
+			[
+				"ds",
+				"dstPosElement"
+			],
+			[
+				"dstP",
+				"dstPosRow"
+			],
+			[
+				"is",
+				"isAuthenticated"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"sess",
+				"sessionStore"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"ran",
+				"randomnumber"
+			],
+			[
+				"U",
+				"Userpassword"
+			],
+			[
+				"User",
+				"Username"
+			],
+			[
+				"Us",
+				"Username"
+			],
+			[
+				"succe",
+				"successfully"
+			],
+			[
+				"mo",
+				"movq"
+			],
+			[
+				"dep",
+				"department"
+			],
+			[
+				"de",
+				"department_id"
+			],
+			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"out",
+				"outline-color"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"bor",
+				"border-bottom-color"
+			],
+			[
+				"border-c",
+				"border-color"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"head",
+				"header\tTag"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"col",
+				"col-lg-4"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"ali",
+				"align-items"
+			],
+			[
+				"al",
+				"align-items"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"bord",
+				"border-style"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"posi",
+				"position"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"position",
+				"object-position"
+			],
+			[
+				"a-",
+				"a-zA-Z0-9"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/user/Desktop/CSCI 2400/Computer-Systems/PerfLab/kernels.c.bak",
+		"/home/user/Desktop/CSCI 2400/Computer-Systems/PerfLab/kernelsAtl.c",
+		"/home/user/Desktop/CSCI 2400/Computer-Systems/PerfLab/defs.h",
+		"/home/user/Desktop/CSCI 2400/PerfLab/defs.h",
+		"/home/user/Desktop/CSCI 2400/PerfLab/kernels.c",
+		"/home/user/Desktop/CSCI 2400/PerfLab/driver.c",
+		"/home/user/Desktop/CSCI 2400/PerfLab/Makefile",
+		"/home/user/Desktop/CSCI 2400/AttackLab/AttackLabInterview.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/ctarget",
+		"/home/user/Desktop/CSCI3308/Lab10/node-js-getting-started/views/pages/index.ejs",
+		"/home/user/Desktop/CSCI3308/Lab10/Casey_Zhdanov_Link.txt",
+		"/home/user/Desktop/CSCI3308/Lab10/node-js-getting-started/index.js",
+		"/home/user/Desktop/CSCI 2400/PerfLab/PerfLab_Notes.txt",
+		"/home/user/Desktop/CSCI 2400/PerfLab/README",
+		"/home/user/Desktop/CSCI3308/SemesterProject/aMAZEingGames/Project/website/webpage.html",
+		"/home/user/Desktop/CSCI3308/SemesterProject/aMAZEingGames/Project/website/highscores.html",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/routes/index_backup.js",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/views/index.hbs",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/views/register.hbs",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/package.json",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/app.js",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/.env",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/routes/index.js",
+		"/home/user/Desktop/CSCI3308/HW3/HW3AnswerSet.txt",
+		"/home/user/Desktop/CSCI3308/Lab6/Lab6Commands.sql",
+		"/home/user/Desktop/CSCI3308/Lab9/config.js",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/Lab 9/add.ejs",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/.gitignore",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/Lab 9/header.ejs",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/.env.default",
+		"/home/user/Desktop/CSCI3308/Lab9/routes/store.js",
+		"/home/user/Desktop/CSCI3308/Lab9/app.js",
+		"/home/user/Desktop/CSCI3308/Lab9/views/layouts/header.ejs",
+		"/home/user/Desktop/CSCI3308/Lab9/routes/index.js",
+		"/home/user/Desktop/CSCI3308/Lab9/routes/index.ejs",
+		"/home/user/Desktop/CSCI3308/SemesterProject/express-cc/webpack.config.js",
+		"/home/user/Desktop/CSCI3308/Lab9/MySQL_Variables_Dump.txt",
+		"/home/user/Desktop/CSCI3308/Lab9/views/store/list.ejs",
+		"/home/user/Desktop/CSCI3308/Lab9/views/store/edit.ejs",
+		"/home/user/Desktop/CSCI3308/Lab9/views/index.ejs",
+		"/home/user/Desktop/CSCI3308/Lab9/views/layouts/footer.ejs",
+		"/home/user/Desktop/CSCI3308/Lab9/views/store/add.ejs",
+		"/home/user/Desktop/CSCI3308/HW2/style.css",
+		"/home/user/Desktop/CSCI3308/HW2/form.html",
+		"/home/user/Desktop/CSCI3308/HW2/solutions.txt",
+		"/home/user/Desktop/CSCI3308/HW2/grid.html",
+		"/home/user/Desktop/CSCI3308/HW2/mypage.html",
+		"/home/user/Desktop/CSCI 2400/AttackLab/phase5_y_rsi.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/phase5NoComments.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch2.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/luongvo_rtarget.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/rtarget_dump.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/luongvo.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/luongvo.d",
+		"/home/user/Desktop/CSCI 2400/AttackLab/luongvo.c",
+		"/home/user/Desktop/CSCI 2400/AttackLab/ctargetAssembly.txt",
+		"/home/user/Desktop/CSCI3308/SemesterProject/RegisteredUsersDB.txt",
+		"/home/user/Desktop/CSCI3308/SemesterProject/UsersDBTutorial.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/phase4.txt",
+		"/home/user/Desktop/CSCI 2400/c2assembly_Quiz2_Q6.c",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3ANSWER.txt",
+		"/home/user/Desktop/CSCI3308/HW3/Scripts/employees.txt",
+		"/home/user/Desktop/CSCI3308/Lab6Commands.sql",
+		"/home/user/Desktop/CSCI3308/HW3/HW3.sql",
+		"/home/user/Desktop/CSCI3308/HW3/postinst",
+		"/home/user/Desktop/CSCI3308/HW3/postrm",
+		"/home/user/Desktop/CSCI3308/Lab7/Lab7_jQuery_AjaxCall.html",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3testfile.s",
+		"/home/user/Desktop/CSCI3308/Lab7/hello.html",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3_2.d",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3_2.s",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3ANSWER.s",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch2.s",
+		"/home/user/Desktop/CSCI 2400/AttackLab/longshot.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3alt.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3_4.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3.s",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3_3.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch3_2.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/cookie.txt",
+		"/home/user/Desktop/CSCI3308/Lab6/db.sql",
+		"/home/user/Desktop/CSCI 2400/BombLab/bomb699/BombLabInstructions.txt",
+		"/home/user/Desktop/CSCI 2400/BombLab/bomb699/BombLabAnswers.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/AttackLabInst.txt",
+		"/home/user/Desktop/CSCI 2400/AttackLab/touch1.txt",
+		"/home/user/Desktop/CSCI3308/HW2/Zach Edits/grid.html",
+		"/home/user/Desktop/CSCI3308/HW2/Zach Edits/style.css",
+		"/home/user/Desktop/CSCI3308/Lab4/menu.css",
+		"/home/user/Desktop/CSCI3308/Lab4/boxes.css",
+		"/home/user/Desktop/CSCI3308/Lab4/boxes.html",
+		"/home/user/Desktop/CSCI 2400/BombLab/bomb699/bomb_sublime.c",
+		"/home/user/Desktop/CSCI 2400/BombLab/bomb699/bomb_symbolTable.txt",
+		"/home/user/Desktop/CSCI3308/HW1/RegexAnswer.sh",
+		"/home/user/Desktop/CSCI 2400/BombLab/bomb699/BombScript.sh",
+		"/home/user/Desktop/CSCI3308/HW1/Grades.sh",
+		"/home/user/Desktop/CSCI3308/HW1/GradesAwk.sh",
+		"/home/user/Desktop/CSCI3308/HW1/RegexPracticeTest.txt",
+		"/home/user/Desktop/CSCI 2400/DataLab/datalab-handout/sublime_bits.c",
+		"/home/user/Desktop/CSCI3308/HW1/StudentGrades.txt"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index_backup.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 205.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

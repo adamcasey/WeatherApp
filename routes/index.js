@@ -68,6 +68,14 @@ router.get('/logout', function(req, res) {
 });
 
 /* GET Game Page 1 */
+/*
+GET Games Page
+Going to try and copy the same post action when someone has logged in
+*/
+router.get('/games', authenticationMiddleware(), function (req, res) {
+	//render the games page
+	res.render('Justin_p5/MyProjects/Snake_Game/testScript', { title: 'Welcome to the aMAZEing Games Page' });
+});
 
 /* GET Game Page 2 */
 
