@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {padding: 0; margin: 0;} </style>
+<script src="p5.min.js"></script>
+<script src="/home/user/Desktop/CSCI3308/SemesterProject/express-cc/p5.dom.min.js"></script>
+<script src="/home/user/Desktop/CSCI3308/SemesterProject/express-cc/p5.sound.min.js"></script>
+    <script type="text/javascript" src="snake.js" ></script>
+    <script type="text/javascript" src="sketch.js" ></script>
+  </head>
+  <body>
+    <form action="index.php" method = "post" />
+      <input id = 'output' type = "text" name = "output" />
+      <input id = "submit" type = "submit" value = "Submit Score" />
+    </form>
+  </body>
+</html>
