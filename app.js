@@ -163,5 +163,6 @@ hbs.registerHelper('json', function(context) {
   return JSON.stringify(context, null, 2);
 });
 
+app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 
 module.exports = app;
