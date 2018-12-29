@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## NOTICE
 
 ##Test 
@@ -14,3 +15,8 @@ express-cc is an open-source framework running under the [MIT License](https://o
 # Software-Dev-Methods-Tools
 Code repo for Software Dev Methods &amp; Tools course - Spring 2018
 >>>>>>> e20c1ca80d07dd29b6bcb539df7b6d44641e4bbc
+=======
+# WeatherApp
+
+Building a very rudimentary Weather App using either OpenWeatherMap or DarkSky APIs
+>>>>>>> a4a8d2ad4d8c34a8234ec5571fb925608e5b0752
